@@ -1,0 +1,47 @@
+﻿@model Product
+
+<h3 style="color:whitesmoke">@Model.Name Update Information </h3>
+<br />
+<style>
+    body {
+        background-image: url('https://i.imgur.com/QVFUaZP.jpg');
+    }
+</style>
+<table class="table table-bordered">
+    <tr>
+        <th class="bg-primary" style="color:black">ID</th>
+        <th class="bg-primary" style="color:black">Name</th>
+        <th class="bg-primary" style="color:black">Price Per Unit</th>
+        <th class="bg-primary" style="color:black">Quantity</th>
+        <th class="bg-primary" style="color:black">Price</th>
+    </tr>
+    <tr>
+        <td class="bg-dark" style="color:whitesmoke">@Model.GroceryItemID</td>
+        <td class="bg-dark" style="color:whitesmoke">@Model.Name</td>
+        <td class="bg-dark" style="color:whitesmoke">@Model.PricePerUnit</td>
+        <td class="bg-dark" style="color:whitesmoke">@Model.Quantity</td>
+        <td class="bg-dark" style="color:whitesmoke">@Model.Price</td>
+    </tr>
+</table>
+<div style="display: block">
+    <a href="/Product/UpdateProduct/@Model.GroceryItemID">Click here to update this product</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://localhost:44387/Product">Return to Grocery List</a>
+    <br />
+    <br />
+</div>
+
+<div style="display: block">
+    @using (Html.BeginForm("DeleteProduct", "Product", "Post"))
+    {
+        <input type="hidden" asp-for="GroceryItemID" value="@Model.GroceryItemID" />
+        <input class="bg-danger" style="color:whitesmoke" type="submit" 
+               onclick="return confirm('Are you sure? It is recommended to not delete items, rather just edit them.')" 
+               value="Click here to delete this product from the database" />
+    }
+</div>

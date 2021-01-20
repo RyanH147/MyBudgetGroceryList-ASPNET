@@ -1,0 +1,24 @@
+﻿@model Product
+
+<h2 style="color:whitesmoke">Update @Model.Name</h2>
+<style>
+    body {
+        background-image: url('https://i.imgur.com/QVFUaZP.jpg');
+    }
+</style>
+
+@using (Html.BeginForm("UpdateProductToDatabase", "Product", "Post"))
+{
+    <input asp-for="GroceryItemID" type="hidden" value="@Model.GroceryItemID" />
+    <label asp-for="Name" class="control-label" style="color:whitesmoke">Name</label>
+    <input class="bg-dark form-control" style="color:whitesmoke" type="text" name="Name" value="@Model.Name" />
+    <br />
+    <label asp-for="PricePerUnit" class="control-label" style="color:whitesmoke">Price Per Unit</label>
+    <input class="bg-dark form-control" style="color:whitesmoke" type="number" step="0.01" name="PricePerUnit" value="@Model.PricePerUnit" />
+    <br />
+    <label asp-for="Quantity" class="control-label" style="color:whitesmoke">Quantity</label>
+    <input class="bg-dark form-control" style="color:whitesmoke" type="number" step="1.00" name="Quantity" value="@Model.Quantity" />
+    <br />
+    <input type="submit" value="Update Product" class="btn btn-primary" />
+}
+

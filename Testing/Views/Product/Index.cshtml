@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Product>
+
+
+<h2 style="color:white">My Grocery List</h2>
+<br />
+<body>
+    <style>
+    body { background-image: url('https://i.imgur.com/QVFUaZP.jpg'); }
+    </style>
+    <div style="color:white">
+        <a class="btn-group-lg" href="/Product/InsertProductToDatabase/">Click here to add a new grocery item</a> or click an ID number to edit an existing item.
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th class="bg-primary" style="color:black">ID</th>
+            <th class="bg-primary" style="color:black">Name</th>
+            <th class="bg-primary" style="color:black">Price Per Unit</th>
+            <th class="bg-primary" style="color:black">Quantity</th>
+            <th class="bg-primary" style="color:black">Price</th>
+        </tr>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td class="bg-dark" style="color:whitesmoke"><a href=/Product/ViewProduct/@product.GroceryItemID>@product.GroceryItemID</a></td>
+                <td class="bg-dark" style="color:whitesmoke">@product.Name</td>
+                <td class="bg-dark" style="color:whitesmoke">@product.PricePerUnit</td>
+                <td class="bg-dark" style="color:whitesmoke">@product.Quantity</td>
+                <td class="bg-dark" style="color:whitesmoke">@product.Price</td>
+            </tr>
+        }
+
+        @{
+            var subTotal = Math.Round(Model.Sum(i => i.Price), 2);
+        }
+
+
+    </table>
+
+    <main>
+        <h3 style="color:white">Adjust your Tax Rate and click the Calculate button to view your Total Price</h3>
+        <label style="color:white" for="subtotal">Subtotal:</label>
+        <input class="bg-dark" style="color:whitesmoke" type="text" id="subtotal" value="@(subTotal)">
+        <span style="color:white" id="subtotal_message"></span><br>
+
+        <label style="color:white" for="tax_rate">Tax Rate:</label>
+        <input class="bg-dark" style="color:whitesmoke" type="text" id="tax_rate" value="9.5">
+        <span style="color:white" id="tax_rate_message">Enter Sales Tax Rate Percentage (99.9)</span><br>
+
+        <label style="color:white" for="sales_tax">Sales Tax Total:</label>
+        <input class="bg-dark" style="color:whitesmoke" type="text" id="sales_tax" disabled><br>
+
+        <label style="color:white" for="total">Total After Tax Price:</label>
+        <input class="bg-dark" style="color:whitesmoke" type="text" id="total" disabled><br>
+
+        <label>&nbsp;</label>
+        <input class="bg-primary" style="color:black" type="button" id="calculate" value="Click to Calculate Total Price">
+    </main>
+
+
+
+    <script src="~/js/site.js"></script>
+</body>
